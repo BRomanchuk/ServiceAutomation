@@ -1,11 +1,15 @@
-from GenerateNameTags import generate_pdfs
-# from PDF_Merger import merge_pdfs
+import os
+from PDFsGenerator import generate_pdfs
+from PDFsMerger import merge_pdfs
 
-filenames = generate_pdfs()
 
-# merge all pdf files into one result
-# merge_pdfs(filenames)
-# import sct
-# sct
-# from result import print_tool
-# print_tool
+def generate_nametags(table_src, doc_name):
+    # generate temp pdfs and get their names
+    filenames = generate_pdfs(table_src=table_src, doc_name=doc_name)
+
+    # merge all pdf files into one result
+    merge_pdfs(filenames)
+
+    path = os.getcwd()
+    path = os.path.realpath(path)
+    os.startfile(path + "\\Destination\Неймтеги.pdf")
